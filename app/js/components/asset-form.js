@@ -1,10 +1,26 @@
 var React = require('react');
 var vimondApi = require('../vimond-api');
+var InputGroup = require('./input-group');
 
+//If this had been a bigger app, I would probably put this in a Util file
+function handleChange(field, message){
+    return function(event){
+        var value = event.currentTarget.value;
+        var newState = this.state;
+        newState.data[field] = value;
+
+        if(value.length === 0){
+            newState.errors[field] = message;
+        }else{
+            newState.errors[field] = undefined;
+        }
+        this.setState(newState);
+    };
+}
 
 module.exports = React.createClass({displayName: 'AssetForm',
     getInitialState: function(){
-        return {data: {title: 'loading..'}};
+        return {data: {title: 'loading..'}, errors: {}};
     },
     componentDidMount: function(){
         var promise = vimondApi.asset.get(this.props.data.id);
@@ -23,16 +39,16 @@ module.exports = React.createClass({displayName: 'AssetForm',
                 src: this.state.data.imageUrl}),
             React.DOM.form(
                 null,
-                React.DOM.div(
-                    {className: 'input-group'},
-                    React.DOM.label({htmlFor: 'title'},"Tittel"),
-                    React.DOM.input({id: 'title', value: this.state.data.title, onChange: function(){}}, null)
-                ),
-                React.DOM.div(
-                    {className: 'input-group'},
-                    React.DOM.label({htmlFor: 'description'},"Beskrivelse"),
-                    React.DOM.textarea({id: 'title', value: this.state.data.title, onChange: function(){}}, null)
-                )
+                InputGroup({id: 'title', name: 'Title', value: this.state.data.title, error: this.state.errors.title,
+                      handleChange: handleChange("title", "Tittel kan ikke være tom").bind(this)}, null),
+                InputGroup({id: 'description', name: 'Beskrivelse', value: this.state.data.description, error: this.state.errors.description,
+                           textarea: true,
+                      handleChange: handleChange("description", "Beskrivelsen kan ikke være tom").bind(this)}, null),
+                React.DOM.button(
+                    {
+                        className: "submit", 
+                        onClick: function(){console.log('submit');this.props.router.navigate("asset/"+this.state.data["@id"]);}
+                    }, "Lagre")
             )
         );
     }

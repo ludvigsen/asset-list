@@ -1,5 +1,20 @@
+body{
+    //background: #276292;
+    font-family: 'Oswald', sans-serif;
+}
 .vimond{
+    .error{
+        color: red;
+    }
+    a:visited, a{
+        color: black;
+    }
     .asset-form{
+        background: gray;
+        border-radius: 5px;
+        a{
+            padding-left: 10px;
+        }
         form{
             padding: 10px;
         }
@@ -16,6 +31,9 @@
             }
             input, textarea{
                 width: 346px;
+            }
+            textarea{
+                height: 60px;
             }
         }
     }
