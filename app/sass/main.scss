@@ -1,4 +1,24 @@
 .vimond{
+    .asset-form{
+        form{
+            padding: 10px;
+        }
+        img{
+            padding: 10px;
+            width: 500px;
+            display: block;
+        }
+        .input-group{
+            label{
+                width: 150px;
+                display: inline-block;
+                vertical-align: top;
+            }
+            input, textarea{
+                width: 346px;
+            }
+        }
+    }
     .assets{
         .asset{
             width: 300px;

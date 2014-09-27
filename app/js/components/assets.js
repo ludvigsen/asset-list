@@ -12,14 +12,14 @@ module.exports = React.createClass({displayName: 'Assets',
             this.setState({data: data});
         }.bind(this));
     },
-    assetClick: function(event){
-        console.log('click: ', event);
+    assetClick: function(id){
+        this.props.router.navigate('asset/'+id, {trigger: true});
     },
     render: function(){
         return React.DOM.div({className: 'assets'},
                 this.state.data.map(function(e){
                     console.log('map: ', e);
-                    return Asset({key: e['@id'], data:e, onClick: this.assetClick});
+                    return Asset({key: e['@id'], data:e, clickHandler: this.assetClick});
                 }.bind(this)));
     }
 });

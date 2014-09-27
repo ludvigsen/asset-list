@@ -1,7 +1,9 @@
 var $ = require('jquery');
 var Promise = require('promise');
 
-var ASSETS_URL = "http://api.ulriken.vimondtv.com/api/web/search/categories/999/assets.json";
+var API_URL = "http://api.ulriken.vimondtv.com";
+var ASSETS_URL = API_URL+ "/api/web/search/categories/999/assets.json";
+var ASSET_URL = API_URL+"/api/web/asset/{{id}}.json";
 
 module.exports = {
     assets:{
@@ -19,6 +21,21 @@ module.exports = {
                 });
             });
         }
+    },
+    asset:{
+        get: function(id){
+            return new Promise(function(resolve, reject){
+                $.ajax({
+                    url: ASSET_URL.replace("{{id}}", id),
+                    type: 'GET',
+                    success: function(data){
+                        resolve(data.asset);
+                    },
+                    error: function(error){
+                        reject(error);
+                    }
+                });
+            });
+        }
     }
-    
 };
