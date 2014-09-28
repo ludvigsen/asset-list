@@ -27,6 +27,7 @@
     "grunt-sass": "^0.14.2",
     "backbone": "^1.1.2",
     "nativesortable": "0.0.1",
-    "grunt-contrib-clean": "^0.6.0"
+    "grunt-contrib-clean": "^0.6.0",
+    "alerts": "^0.1.3"
   }
 }
