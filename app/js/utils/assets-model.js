@@ -1,11 +1,14 @@
 /*global localStorage*/
 'use strict';
+
+//Saves an asset to localStorage
 function setLocalAsset(asset){
     if(localStorage){
         localStorage["asset"+asset["@id"]] = JSON.stringify(asset);    
     }
 }
 
+//Get an asset from local storage, and overwrite with local changes
 function getFromLocalStorage(asset){
     if(localStorage){
         var stored;
@@ -25,6 +28,10 @@ function getFromLocalStorage(asset){
     return asset;
 }
 
+
+//Sorts the assets by order property
+//If order is not defined it asset is put in the first vacant slot, 
+//and has its order property defined
 function sort(assets){
     var i = 0;
     var result = [];
@@ -43,7 +50,7 @@ function sort(assets){
     return result;
 }
 
-
+//Model for representing list of assets, also saves to localStorage
 var AssetsModel = function(assets){
     this.assets = sort(assets.map(getFromLocalStorage));
 };
