@@ -2,7 +2,17 @@ body{
     //background: #276292;
     font-family: 'Oswald', sans-serif;
 }
+.alerts {
+        position: fixed;
+        z-index: 10000;
+        top: 1em;
+        right: 1em;
+        .alert-success{
+            color: green;
+        }
+    }
 .vimond{
+    
     [draggable] {
         -moz-user-select: none;
         -khtml-user-select: none;
@@ -36,16 +46,21 @@ body{
             display: block;
         }
         .input-group{
+            margin-bottom: 5px;
             label{
                 width: 150px;
                 display: inline-block;
                 vertical-align: top;
             }
             input, textarea{
+                padding: 4px;
+                border-radius: 5px;
                 width: 346px;
             }
             textarea{
                 height: 60px;
+                margin-left: 1px;
+                width: 347px
             }
         }
     }

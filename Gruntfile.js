@@ -12,7 +12,11 @@ module.exports = function(grunt) {
         },
         clean: ['dist/'],
         browserify: {
-            'dist/js/main.js': ['app/js/main.js']
+            'dist/js/main.js': ['app/js/main.js'],
+            options:{
+                "alertify":         { path: "node_modules/alertify/lib/alertify.min.js", exports: "alertify" },
+            }
+
         }, 
         watch: {
             scripts: {

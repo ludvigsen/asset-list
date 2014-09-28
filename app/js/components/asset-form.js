@@ -1,7 +1,8 @@
-/*global localStorage*/
+/*global localStorage, window*/
 var React = require('react');
 var vimondApi = require('../utils/vimond-api');
 var InputGroup = require('./input-group');
+var alerts = require('alerts');
 
 //If this had been a bigger app, I would probably put this in a Util file
 function handleChange(field, message){
@@ -49,9 +50,10 @@ module.exports = React.createClass({displayName: 'AssetForm',
                     {
                         className: "submit", 
                         onClick: function(){
-                            console.log('submit');
                             if(localStorage){
                                 localStorage.setItem('asset'+this.state.data["@id"], JSON.stringify(this.state.data));
+                                console.log('asset lagret');
+                                alerts('Asset lagret!', {timeout: 2000, className: 'alert-success'});
                             }
                         }.bind(this)
                     }, "Lagre")
