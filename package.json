@@ -25,6 +25,7 @@
     "jquery": "^2.1.1",
     "promise": "^6.0.0",
     "grunt-sass": "^0.14.2",
-    "backbone": "^1.1.2"
+    "backbone": "^1.1.2",
+    "nativesortable": "0.0.1"
   }
 }

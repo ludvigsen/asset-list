@@ -11,15 +11,12 @@ module.exports = Backbone.Router.extend({
     },
 
     index: function() {
-        console.log('routing...');
         var container = document.getElementById('content');
         React.renderComponent(Assets({router: this}), container);
     },
 
     asset: function(id) {
-        console.log('asset route');
         if(!id){
-            console.log('no asset: redirect...');
             this.navigate("");
         }
         var container = document.getElementById('content');

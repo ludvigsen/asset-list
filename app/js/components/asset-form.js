@@ -1,5 +1,6 @@
+/*global localStorage*/
 var React = require('react');
-var vimondApi = require('../vimond-api');
+var vimondApi = require('../utils/vimond-api');
 var InputGroup = require('./input-group');
 
 //If this had been a bigger app, I would probably put this in a Util file
@@ -31,7 +32,7 @@ module.exports = React.createClass({displayName: 'AssetForm',
     render: function(){
         return React.DOM.div(
             {className: 'asset-form'}, 
-            React.DOM.a({href: '#', onClick: function(){this.props.router.navigate("", {trigger: true});}}, "« Tilbake"),
+            React.DOM.a({href: '#', onClick: function(){this.props.router.navigate("", {trigger: true});}.bind(this)}, "« Tilbake"),
             React.DOM.img({
                 onError: function(event){
                     event.currentTarget.style.display = "none";
@@ -47,7 +48,12 @@ module.exports = React.createClass({displayName: 'AssetForm',
                 React.DOM.button(
                     {
                         className: "submit", 
-                        onClick: function(){console.log('submit');this.props.router.navigate("asset/"+this.state.data["@id"]);}
+                        onClick: function(){
+                            console.log('submit');
+                            if(localStorage){
+                                localStorage.setItem('asset'+this.state.data["@id"], JSON.stringify(this.state.data));
+                            }
+                        }.bind(this)
                     }, "Lagre")
             )
         );
