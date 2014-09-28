@@ -26,6 +26,7 @@
     "promise": "^6.0.0",
     "grunt-sass": "^0.14.2",
     "backbone": "^1.1.2",
-    "nativesortable": "0.0.1"
+    "nativesortable": "0.0.1",
+    "grunt-contrib-clean": "^0.6.0"
   }
 }
